@@ -9,7 +9,7 @@ Add PayPal Express as an Alternate Payment Option at Checkout
 
 == Description ==
 
-This plugin enables a radio select on the membership checkout page, allowing a user to pay onsite with your credit card payment gateway or to pay vai PayPal.
+This plugin enables a radio select on the membership checkout page, allowing a user to pay onsite with your credit card payment gateway or to pay via PayPal.
 
 == Installation ==
 
