@@ -3,7 +3,7 @@ Contributors: strangerstudios
 Tags: gateway, paypal, checkout, registration
 Requires at least: 3.6
 Tested up to: 3.8.1
-Stable tag: .2
+Stable tag: .2.1
 
 Add PayPal Express as an Alternate Payment Option at Checkout
 
@@ -37,6 +37,9 @@ This plugin will only work when the primary gateway is an onsite gateway. At thi
 Please post it in the issues section of GitHub and we'll fix it as soon as we can. Thanks for helping. https://github.com/strangerstudios/pmpro-add-paypal-express/issues
 
 == Changelog ==
+= .2.1 =
+* Now checking the pmpro_require_billing JS var to make sure we don't show the credit card fields when using other addons like pmpro-address-free-levels.
+
 = .2 =
 * Using different hook to add gateway option to checkout page.
 
