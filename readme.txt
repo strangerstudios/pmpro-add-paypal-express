@@ -2,7 +2,7 @@
 Contributors: strangerstudios
 Tags: gateway, paypal, checkout, registration
 Requires at least: 3.6
-Tested up to: 3.9
+Tested up to: 3.9.1
 Stable tag: .2.2.1
 
 Add PayPal Express as an Alternate Payment Option at Checkout
