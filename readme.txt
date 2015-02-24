@@ -1,6 +1,6 @@
-== PMPro Add PayPal Express ==
+== Paid Memberships Pro - Add PayPal Express Add On ==
 Contributors: strangerstudios
-Tags: gateway, paypal, checkout, registration
+Tags: pmpro, paid memberships pro, gateway, paypal, checkout, registration
 Requires at least: 3.6
 Tested up to: 3.9.1
 Stable tag: .2.2.1
