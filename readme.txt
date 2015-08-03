@@ -2,7 +2,7 @@
 Contributors: strangerstudios
 Tags: pmpro, paid memberships pro, gateway, paypal, checkout, registration
 Requires at least: 3.6
-Tested up to: 4.2
+Tested up to: 4.2.3
 Stable tag: .3
 
 Add PayPal Express as an Alternate Payment Option at Checkout
