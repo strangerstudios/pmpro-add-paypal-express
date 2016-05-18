@@ -28,13 +28,33 @@ function pmproappe_pmpro_valid_gateways($gateways)
 {
     //if already using paypal, ignore this
 	$setting_gateway = get_option("pmpro_gateway");
-	if($setting_gateway == "paypal")
+
+	if(pmproappe_using_paypal( $setting_gateway )) {
+
 		return $gateways;
+	}
 	
 	$gateways[] = "paypalexpress";
     return $gateways;
 }
 add_filter("pmpro_valid_gateways", "pmproappe_pmpro_valid_gateways");
+
+function pmproappe_using_paypal( $check_gateway = null ) {
+
+	if (is_null($check_gateway)) {
+
+		global $gateway;
+		$check_gateway = $gateway;
+	}
+
+	$paypal_gateways = apply_filters('pmpro_paypal_gateways', array('paypal', 'paypalstandard', 'paypalexpress', 'payflowpro' ) );
+
+	if ( in_array($check_gateway, $paypal_gateways)) {
+		return true;
+	}
+
+	return false;
+}
 
 /*
 	Add toggle to checkout page.
@@ -47,9 +67,9 @@ function pmproappe_pmpro_checkout_boxes()
 		return;
 		
 	global $pmpro_requirebilling, $gateway, $pmpro_review;
-		
-	//only show this if we're not reviewing
-	if(empty($pmpro_review))
+
+	//only show this if we're not reviewing and the current gateway isn't a PayPal gateway
+	if(empty($pmpro_review) && false === pmproappe_using_paypal())
 	{
 	?>
 	<table id="pmpro_payment_method" class="pmpro_checkout top1em" width="100%" cellpadding="0" cellspacing="0" border="0" <?php if(!$pmpro_requirebilling) { ?>style="display: none;"<?php } ?>>
@@ -172,6 +192,11 @@ add_action("pmpro_checkout_boxes", "pmproappe_pmpro_checkout_boxes", 20);
 */
 function pmproappe_pmpro_applydiscountcode_return_js($discount_code, $discount_code_id, $level_id, $code_level)
 {
+	// skip this if the active gateway is a PayPal gateway
+	if (true === pmproappe_using_paypal()) {
+		return;
+	}
+
 	if(pmpro_isLevelFree($code_level))
 	{
 		//free level, hide options and billing fields
