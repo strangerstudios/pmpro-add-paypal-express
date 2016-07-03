@@ -2,8 +2,8 @@
 Contributors: strangerstudios
 Tags: pmpro, paid memberships pro, gateway, paypal, checkout, registration
 Requires at least: 3.6
-Tested up to: 4.2.3
-Stable tag: .3
+Tested up to: 4.5.3
+Stable tag: .4
 
 Add PayPal Express as an Alternate Payment Option at Checkout
 
@@ -37,6 +37,10 @@ This plugin will only work when the primary gateway is an onsite gateway. At thi
 Please post it in the issues section of GitHub and we'll fix it as soon as we can. Thanks for helping. https://github.com/strangerstudios/pmpro-add-paypal-express/issues
 
 == Changelog ==
+= .4 =
+* BUG: Added pmpro_btn-submit-checkout class to the PayPal checkout button. When paired with PMPro core updates, this fixes issues where the PayPal button remained disabled after trying to checkout via the default gateway first.
+* ENHANCEMENT: Changed "payment method" section to use div formatting instead of tables.
+
 = .3 =
 * Fixed bug where payment fields could show up on the review page when checking out with PayPal Express.
 

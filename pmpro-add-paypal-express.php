@@ -3,7 +3,7 @@
 Plugin Name: Paid Memberships Pro - Add PayPal Express Add On
 Plugin URI: http://www.paidmembershipspro.com/wp/pmpro-add-paypal-express/
 Description: Add PayPal Express as a Second Option at Checkout
-Version: .3
+Version: .4
 Author: Stranger Studios
 Author URI: http://www.strangerstudios.com
 */
@@ -52,33 +52,23 @@ function pmproappe_pmpro_checkout_boxes()
 	if(empty($pmpro_review))
 	{
 	?>
-	<table id="pmpro_payment_method" class="pmpro_checkout top1em" width="100%" cellpadding="0" cellspacing="0" border="0" <?php if(!$pmpro_requirebilling) { ?>style="display: none;"<?php } ?>>
-	<thead>
-		<tr>
-			<th><?php _e('Choose your Payment Method', 'pmpro');?></th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>
-				<div>
-					<span class="gateway_<?php echo esc_attr($setting_gateway); ?>">
-						<input type="radio" name="gateway" value="<?php echo esc_attr($setting_gateway);?>" <?php if(!$gateway || $gateway == $setting_gateway) { ?>checked="checked"<?php } ?> />
-						<a href="javascript:void(0);" class="pmpro_radio"><?php _e('Check Out with a Credit Card Here', 'pmpro');?></a>
-					</span>
-					<span class="gateway_paypalexpress">
-						<input type="radio" name="gateway" value="paypalexpress" <?php if($gateway == "paypalexpress") { ?>checked="checked"<?php } ?> />
-						<a href="javascript:void(0);" class="pmpro_radio"><?php _e('Check Out with PayPal', 'pmpro');?></a>
-					</span>	
-				</div>
-			</td>
-		</tr>
-	</tbody>
-	</table>
+	<div id="pmpro_payment_method" class="pmpro_checkout" <?php if(!$pmpro_requirebilling) { ?>style="display: none;"<?php } ?>>
+		<h2><?php _e('Choose your Payment Method', 'pmpro');?></h2>
+		<div class="pmpro_checkout-fields">
+			<span class="gateway_<?php echo esc_attr($setting_gateway); ?>">
+				<input type="radio" name="gateway" value="<?php echo esc_attr($setting_gateway);?>" <?php if(!$gateway || $gateway == $setting_gateway) { ?>checked="checked"<?php } ?> />
+				<a href="javascript:void(0);" class="pmpro_radio"><?php _e('Check Out with a Credit Card Here', 'pmpro');?></a>
+			</span>
+			<span class="gateway_paypalexpress">
+				<input type="radio" name="gateway" value="paypalexpress" <?php if($gateway == "paypalexpress") { ?>checked="checked"<?php } ?> />
+				<a href="javascript:void(0);" class="pmpro_radio"><?php _e('Check Out with PayPal', 'pmpro');?></a>
+			</span>	
+		</div>
+	</div> <!--end pmpro_payment_method -->
 	<?php //here we draw the PayPal Express button, which gets moved in place by JavaScript ?>
 	<span id="pmpro_paypalexpress_checkout" style="display: none;">
 		<input type="hidden" name="submit-checkout" value="1" />		
-		<input type="image" value="<?php _e('Check Out with PayPal', 'pmpro');?> &raquo;" src="<?php echo apply_filters("pmpro_paypal_button_image", "https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif");?>" />
+		<input type="image" class="pmpro_btn-submit-checkout" value="<?php _e('Check Out with PayPal', 'pmpro');?> &raquo;" src="<?php echo apply_filters("pmpro_paypal_button_image", "https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif");?>" />
 	</span>
 	<script>	
 		var pmpro_require_billing = <?php if($pmpro_requirebilling) echo "true"; else echo "false";?>;
