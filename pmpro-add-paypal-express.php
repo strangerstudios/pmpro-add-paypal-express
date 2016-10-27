@@ -39,6 +39,9 @@ function pmproappe_pmpro_valid_gateways($gateways)
 }
 add_filter("pmpro_valid_gateways", "pmproappe_pmpro_valid_gateways");
 
+/*
+	Check if a PayPal gateway is enabled for PMPro.
+*/
 function pmproappe_using_paypal( $check_gateway = null ) {
 
 	if (is_null($check_gateway)) {
@@ -238,9 +241,8 @@ function pmproappe_pmpro_applydiscountcode_return_js($discount_code, $discount_c
 }
 add_action('pmpro_applydiscountcode_return_js', 'pmproappe_pmpro_applydiscountcode_return_js', 10, 4);
 
-
 /*
-Function to add links to the plugin row meta
+	Function to add links to the plugin row meta
 */
 function pmproappe_plugin_row_meta($links, $file) {
 	if(strpos($file, 'pmpro-add-paypal-express.php') !== false)
