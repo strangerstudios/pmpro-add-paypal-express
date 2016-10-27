@@ -242,6 +242,26 @@ function pmproappe_pmpro_applydiscountcode_return_js($discount_code, $discount_c
 add_action('pmpro_applydiscountcode_return_js', 'pmproappe_pmpro_applydiscountcode_return_js', 10, 4);
 
 /*
+	Add notice to the PMPro payment settings page if this plugin is active and
+	either PayPal or PayPal Express is the primary gateway.
+*/
+function pmproappe_admin_notices() {
+	//make sure we're on the payment settings page
+	if( !empty( $_REQUEST['page'] ) && $_REQUEST['page'] == 'pmpro-paymentsettings' ) {
+		//check gateway
+		$gateway = pmpro_getGateway();
+		if( $gateway == 'paypal' || $gateway == 'paypalexpress' ) {
+		?>
+		<div class="notice notice-warning is-dismissible"> 
+			<p><?php echo __( 'The Add PayPal Express addon is not required with the chosen gateway. Change the gateway setting below or deactivate the addon.', 'pmproappe' ) ;?></p>
+		</div>
+		<?php
+		}
+	}
+}
+add_action('admin_notices', 'pmproappe_admin_notices');
+
+/*
 	Function to add links to the plugin row meta
 */
 function pmproappe_plugin_row_meta($links, $file) {
