@@ -3,7 +3,7 @@
 Plugin Name: Paid Memberships Pro - Add PayPal Express Add On
 Plugin URI: http://www.paidmembershipspro.com/wp/pmpro-add-paypal-express/
 Description: Add PayPal Express as a Second Option at Checkout
-Version: .4
+Version: .4.1
 Author: Stranger Studios
 Author URI: http://www.strangerstudios.com
 */
@@ -50,7 +50,7 @@ function pmproappe_using_paypal( $check_gateway = null ) {
 		$check_gateway = $gateway;
 	}
 
-	$paypal_gateways = apply_filters('pmpro_paypal_gateways', array('paypal', 'paypalstandard', 'paypalexpress', 'payflowpro' ) );
+	$paypal_gateways = apply_filters('pmpro_paypal_gateways', array('paypal', 'paypalstandard', 'paypalexpress' ) );
 
 	if ( in_array($check_gateway, $paypal_gateways)) {
 		return true;
