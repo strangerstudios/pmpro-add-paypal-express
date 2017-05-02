@@ -1,0 +1,8 @@
+@charset "UTF-8";
+/* CSS Document */
+
+#pmpro_payment_method span.gateway_paypalexpress {margin-left: 3rem; }
+
+@media only screen and (max-width: 767px) {
+	
+}
