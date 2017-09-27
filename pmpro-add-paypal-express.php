@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: Paid Memberships Pro - Add PayPal Express Add On
-Plugin URI: http://www.paidmembershipspro.com/wp/pmpro-add-paypal-express/
+Plugin URI: https://www.paidmembershipspro.com/add-ons/pmpro-add-paypal-express-option-checkout/
 Description: Add PayPal Express as a Second Option at Checkout
-Version: .5.1
-Author: Stranger Studios
-Author URI: http://www.strangerstudios.com
+Version: .5.2
+Author: Paid Memberships Pro
+Author URI: https://www.paidmembershipspro.com
 */
 /*
 	You must have your PayPal Express API key, username, and password set in the PMPro Payment Settings for this plugin to work.
@@ -82,7 +82,10 @@ function pmproappe_pmpro_checkout_boxes()
 	{
 	?>
 	<div id="pmpro_payment_method" class="pmpro_checkout" <?php if(!$pmpro_requirebilling) { ?>style="display: none;"<?php } ?>>
-		<h2><?php _e('Choose Your Payment Method', 'pmpro');?></h2>
+		<hr />
+		<h3>
+			<span class="pmpro_checkout-h3-name"><?php _e('Choose Your Payment Method', 'pmpro');?></span>
+		</h3>
 		<div class="pmpro_checkout-fields">
 			<?php if($setting_gateway != 'check') { ?>
 			<span class="gateway_<?php echo esc_attr($setting_gateway); ?>">
@@ -113,7 +116,7 @@ function pmproappe_pmpro_checkout_boxes()
 					}
 				}
 			?>
-		</div>
+		</div> <!-- end pmpro_checkout-fields -->
 	</div> <!--end pmpro_payment_method -->
 	<?php //here we draw the PayPal Express button, which gets moved in place by JavaScript ?>
 	<span id="pmpro_paypalexpress_checkout" style="display: none;">
@@ -315,7 +318,7 @@ function pmproappe_plugin_row_meta($links, $file) {
 	if(strpos($file, 'pmpro-add-paypal-express.php') !== false)
 	{
 		$new_links = array(
-			'<a href="' . esc_url('http://www.paidmembershipspro.com/add-ons/plugins-on-github/pmpro-add-paypal-express-option-checkout/')  . '" title="' . esc_attr( __( 'View Documentation', 'pmpro' ) ) . '">' . __( 'Docs', 'pmpro' ) . '</a>',
+			'<a href="' . esc_url('https://www.paidmembershipspro.com/add-ons/pmpro-add-paypal-express-option-checkout/')  . '" title="' . esc_attr( __( 'View Documentation', 'pmpro' ) ) . '">' . __( 'Docs', 'pmpro' ) . '</a>',
 			'<a href="' . esc_url('http://paidmembershipspro.com/support/') . '" title="' . esc_attr( __( 'Visit Customer Support Forum', 'pmpro' ) ) . '">' . __( 'Support', 'pmpro' ) . '</a>',
 		);
 		$links = array_merge($links, $new_links);

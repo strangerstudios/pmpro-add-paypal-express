@@ -1,6 +1,7 @@
 @charset "UTF-8";
 /* CSS Document */
 
+#pmpro_payment_method .pmpro_checkout-fields {margin-bottom: 1em; }
 #pmpro_payment_method span.gateway_paypalexpress {margin-left: 2em; }
 
 @media only screen and (max-width: 767px) {
