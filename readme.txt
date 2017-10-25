@@ -2,7 +2,7 @@
 Contributors: strangerstudios
 Tags: pmpro, paid memberships pro, gateway, paypal, checkout, registration
 Requires at least: 3.6
-Tested up to: 4.7.2
+Tested up to: 4.8.2
 Stable tag: .5.2
 
 Appeal to the highest number of potential customers by offering PayPal as a payment option in addition to your onsite credit card payment gateway.
