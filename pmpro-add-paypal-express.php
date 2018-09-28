@@ -326,3 +326,18 @@ function pmproappe_plugin_row_meta($links, $file) {
 	return $links;
 }
 add_filter('plugin_row_meta', 'pmproappe_plugin_row_meta', 10, 2);
+
+
+
+/**
+	 Disables sending the credit card exp email for orders made by PayPal Express
+	 The system can't determin the exipration date for credit cards stored in PayPal
+ */
+function pmproappe_disable_credit_card_exp_email($send,$user_id) {
+
+	if( !get_user_meta($user_id,'pmpro_ExpirationMonth',true) || !get_user_meta($user_id,'pmpro_ExpirationYear',true))
+	return false;
+
+    return $send;
+}
+add_filter("pmpro_send_credit_card_expiring_email", 'pmproappe_disable_credit_card_exp_email',100,2);
