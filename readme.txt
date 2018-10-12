@@ -1,9 +1,9 @@
 == Paid Memberships Pro - Add PayPal Express Add On ==
 Contributors: strangerstudios
 Tags: pmpro, paid memberships pro, gateway, paypal, checkout, registration
-Requires at least: 3.6
-Tested up to: 4.8.2
-Stable tag: .5.2
+Requires at least: 4.0
+Tested up to: 4.9.8
+Stable tag: .5.3
 
 Appeal to the highest number of potential customers by offering PayPal as a payment option in addition to your onsite credit card payment gateway.
 
@@ -30,7 +30,7 @@ Navigate to your Memberships Checkout page and preview the new 'Choose Your Paym
 == Important Notes ==
 
 You do not need to activate this plugin with PayPal Website Payments Pro. PayPal Express is automatically an option at checkout with that gateway.
-	
+
 This plugin will only work when the primary gateway is an onsite gateway. At this time, this includes:
 * Stripe
 * Braintree
@@ -45,6 +45,9 @@ This plugin will only work when the primary gateway is an onsite gateway. At thi
 Please post it in the issues section of GitHub and we'll fix it as soon as we can. Thanks for helping. https://github.com/strangerstudios/pmpro-add-paypal-express/issues
 
 == Changelog ==
+= .5.3 =
+* BUG FIX: Fixed bug where a second PayPal button was shown if the Pay by Check add-on was also active and there were errors on checkout submission.
+
 = .5.2 =
 * ENHANCEMENT: Improved fields display on membership checkout page to use no tables for compatibility with Paid Memberships Pro v1.9.4.
 

@@ -3,16 +3,16 @@
 Plugin Name: Paid Memberships Pro - Add PayPal Express Add On
 Plugin URI: https://www.paidmembershipspro.com/add-ons/pmpro-add-paypal-express-option-checkout/
 Description: Add PayPal Express as a Second Option at Checkout
-Version: .5.2
+Version: .5.3
 Author: Paid Memberships Pro
 Author URI: https://www.paidmembershipspro.com
 */
 /*
 	You must have your PayPal Express API key, username, and password set in the PMPro Payment Settings for this plugin to work.
-	After setting those settings and clicking save, you can switch to your primary gateway and set those settings. 
+	After setting those settings and clicking save, you can switch to your primary gateway and set those settings.
 	The PayPal Express settings will be remembered "in the background".
 	You do not need to activate this plugin with PayPal Website Payments Pro. PayPal Express is automatically an option at checkout with that gateway.
-	
+
 	This plugin will only work when the primary gateway is an onsite gateway. At this time, this includes:
 	* Stripe
 	* Braintree
@@ -36,10 +36,9 @@ function pmproappe_pmpro_valid_gateways($gateways)
 	$setting_gateway = get_option("pmpro_gateway");
 
 	if(pmproappe_using_paypal( $setting_gateway )) {
-
 		return $gateways;
 	}
-	
+
 	$gateways[] = "paypalexpress";
     return $gateways;
 }
@@ -70,16 +69,16 @@ function pmproappe_using_paypal( $check_gateway = null ) {
 */
 function pmproappe_pmpro_checkout_boxes()
 {
-	//if already using paypal, ignore this	
+	//if already using paypal, ignore this
 	$setting_gateway = get_option("pmpro_gateway");
-	if($setting_gateway == "paypal")
+	if(pmproappe_using_paypal( $setting_gateway )) {
 		return;
-		
+	}
+
 	global $pmpro_requirebilling, $gateway, $pmpro_review;
 
 	//only show this if we're not reviewing and the current gateway isn't a PayPal gateway
-	if(empty($pmpro_review) && false === pmproappe_using_paypal($setting_gateway))
-	{
+	if( empty($pmpro_review) ) {
 	?>
 	<div id="pmpro_payment_method" class="pmpro_checkout" <?php if(!$pmpro_requirebilling) { ?>style="display: none;"<?php } ?>>
 		<hr />
@@ -97,7 +96,7 @@ function pmproappe_pmpro_checkout_boxes()
 				<input type="radio" name="gateway" value="paypalexpress" <?php if($gateway == "paypalexpress") { ?>checked="checked"<?php } ?> />
 				<a href="javascript:void(0);" class="pmpro_radio"><?php _e('Check Out with PayPal', 'pmpro');?></a> &nbsp;
 			</span>
-			
+
 			<?php
 				//integration with the PMPro Pay by Check Addon
 				if(function_exists('pmpropbc_checkout_boxes')) {
@@ -118,53 +117,60 @@ function pmproappe_pmpro_checkout_boxes()
 			?>
 		</div> <!-- end pmpro_checkout-fields -->
 	</div> <!--end pmpro_payment_method -->
-	<?php //here we draw the PayPal Express button, which gets moved in place by JavaScript ?>
-	<span id="pmpro_paypalexpress_checkout" style="display: none;">
-		<input type="hidden" name="submit-checkout" value="1" />		
-		<input type="image" class="pmpro_btn-submit-checkout" value="<?php _e('Check Out with PayPal', 'pmpro');?> &raquo;" src="<?php echo apply_filters("pmpro_paypal_button_image", "https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif");?>" />
-	</span>
-	<script>	
+	<?php
+		//Here we draw the PayPal Express button, which gets moved in place by JavaScript
+		//But if the current gateway is PayPalExpress, this span will already have been added
+		if( $gateway != 'paypalexpress' ) {
+		?>
+		<span id="pmpro_paypalexpress_checkout" style="display: none;">
+			<input type="hidden" name="submit-checkout" value="1" />
+			<input type="image" class="pmpro_btn-submit-checkout" value="<?php _e('Check Out with PayPal', 'pmpro');?> &raquo;" src="<?php echo apply_filters("pmpro_paypal_button_image", "https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif");?>" />
+		</span>
+	<?php
+		}
+	?>
+	<script>
 		var pmpro_require_billing = <?php if($pmpro_requirebilling) echo "true"; else echo "false";?>;
-		
+
 		//hide/show functions
 		function showPayPalExpressCheckout()
 		{
 			jQuery('#pmpro_billing_address_fields').hide();
-			jQuery('#pmpro_payment_information_fields').hide();			
+			jQuery('#pmpro_payment_information_fields').hide();
 			jQuery('#pmpro_submit_span').hide();
 			jQuery('#pmpro_paypalexpress_checkout').show();
-			
-			pmpro_require_billing = false;		
+
+			pmpro_require_billing = false;
 		}
-		
+
 		function showCreditCardCheckout()
 		{
 			jQuery('#pmpro_paypalexpress_checkout').hide();
 			jQuery('#pmpro_billing_address_fields').show();
-			jQuery('#pmpro_payment_information_fields').show();			
+			jQuery('#pmpro_payment_information_fields').show();
 			jQuery('#pmpro_submit_span').show();
-			
+
 			pmpro_require_billing = true;
 		}
-		
+
 		function showFreeCheckout()
 		{
 			jQuery('#pmpro_billing_address_fields').hide();
-			jQuery('#pmpro_payment_information_fields').hide();			
+			jQuery('#pmpro_payment_information_fields').hide();
 			jQuery('#pmpro_submit_span').show();
-			jQuery('#pmpro_paypalexpress_checkout').hide();				
-			
-			pmpro_require_billing = false;	
+			jQuery('#pmpro_paypalexpress_checkout').hide();
+
+			pmpro_require_billing = false;
 		}
-		
+
 		function showCheckCheckout()
 		{
 			jQuery('#pmpro_billing_address_fields').show();
-			jQuery('#pmpro_payment_information_fields').hide();			
+			jQuery('#pmpro_payment_information_fields').hide();
 			jQuery('#pmpro_submit_span').show();
-			jQuery('#pmpro_paypalexpress_checkout').hide();				
-			
-			pmpro_require_billing = false;	
+			jQuery('#pmpro_paypalexpress_checkout').hide();
+
+			pmpro_require_billing = false;
 		}
 
 		//choosing payment method
@@ -172,19 +178,19 @@ function pmproappe_pmpro_checkout_boxes()
 
 			//move paypal express button into submit box
 			jQuery('#pmpro_paypalexpress_checkout').appendTo('div.pmpro_submit');
-			
+
 			//detect gateway change
-			jQuery('input[name=gateway]').click(function() {		
+			jQuery('input[name=gateway]').click(function() {
 				var chosen_gateway = jQuery(this).val();
 				if(chosen_gateway == 'paypalexpress') {
 					showPayPalExpressCheckout();
 				} else if(chosen_gateway == 'check') {
 					showCheckCheckout();
-				} else {					
+				} else {
 					showCreditCardCheckout();
 				}
 			});
-			
+
 			//update radio on page load
 			if(jQuery('input[name=gateway]:checked').val() == 'check') {
 				showCheckCheckout();
@@ -195,7 +201,7 @@ function pmproappe_pmpro_checkout_boxes()
 			} else {
 				showFreeCheckout();
 			}
-			
+
 			//select the radio button if the label is clicked on
 			jQuery('a.pmpro_radio').click(function() {
 				jQuery(this).prev().click();
@@ -209,13 +215,13 @@ function pmproappe_pmpro_checkout_boxes()
 	?>
 	<script>
 		//choosing payment method
-		jQuery(document).ready(function() {		
+		jQuery(document).ready(function() {
 			jQuery('#pmpro_billing_address_fields').hide();
-			jQuery('#pmpro_payment_information_fields').hide();			
-		});		
+			jQuery('#pmpro_payment_information_fields').hide();
+		});
 	</script>
 	<?php
-	}	
+	}
 }
 add_action("pmpro_checkout_boxes", "pmproappe_pmpro_checkout_boxes", 20);
 
@@ -246,10 +252,10 @@ function pmproappe_pmpro_applydiscountcode_return_js($discount_code, $discount_c
 	?>
 		jQuery('#pmpro_payment_method').hide();
 		jQuery('#pmpro_billing_address_fields').hide();
-		jQuery('#pmpro_payment_information_fields').hide();			
+		jQuery('#pmpro_payment_information_fields').hide();
 		jQuery('#pmpro_submit_span').show();
 		jQuery('#pmpro_paypalexpress_checkout').hide();
-		
+
 		pmpro_require_billing = false;
 	<?php
 	}
@@ -261,30 +267,30 @@ function pmproappe_pmpro_applydiscountcode_return_js($discount_code, $discount_c
 		{
 			jQuery('#pmpro_paypalexpress_checkout').hide();
 			jQuery('#pmpro_billing_address_fields').show();
-			jQuery('#pmpro_payment_information_fields').show();			
+			jQuery('#pmpro_payment_information_fields').show();
 			jQuery('#pmpro_submit_span').show();
-			
-			pmpro_require_billing = true;	
+
+			pmpro_require_billing = true;
 		}
 		else if(pmpro_require_billing == true)
-		{			
+		{
 			jQuery('#pmpro_billing_address_fields').hide();
-			jQuery('#pmpro_payment_information_fields').hide();			
+			jQuery('#pmpro_payment_information_fields').hide();
 			jQuery('#pmpro_submit_span').hide();
 			jQuery('#pmpro_paypalexpress_checkout').show();
-			
+
 			pmpro_require_billing = false;
 		}
 		else
 		{
 			jQuery('#pmpro_billing_address_fields').hide();
-			jQuery('#pmpro_payment_information_fields').hide();			
+			jQuery('#pmpro_payment_information_fields').hide();
 			jQuery('#pmpro_submit_span').show();
-			jQuery('#pmpro_paypalexpress_checkout').hide();				
-			
-			pmpro_require_billing = false;	
+			jQuery('#pmpro_paypalexpress_checkout').hide();
+
+			pmpro_require_billing = false;
 		}
-		
+
 		pmpro_require_billing = true;
 	<?php
 	}
@@ -302,7 +308,7 @@ function pmproappe_admin_notices() {
 		$gateway = pmpro_getGateway();
 		if( $gateway == 'paypal' || $gateway == 'paypalexpress' ) {
 		?>
-		<div class="notice notice-warning is-dismissible"> 
+		<div class="notice notice-warning is-dismissible">
 			<p><?php echo __( 'The Add PayPal Express Add On is not required with the chosen gateway. Change the gateway setting below or deactivate the addon.', 'pmproappe' ) ;?></p>
 		</div>
 		<?php
