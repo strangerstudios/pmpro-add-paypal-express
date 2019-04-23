@@ -75,59 +75,8 @@ function pmproappe_pmpro_checkout_boxes()
 		return;
 	}
 
-	global $pmpro_requirebilling, $gateway, $pmpro_review;
+	global $pmpro_requirebilling, $gateway, $pmpro_review, $pmpro_msg;
 
-	//only show this if we're not reviewing and the current gateway isn't a PayPal gateway
-	if( empty($pmpro_review) ) {
-	?>
-	<div id="pmpro_payment_method" class="pmpro_checkout" <?php if(!$pmpro_requirebilling) { ?>style="display: none;"<?php } ?>>
-		<hr />
-		<h3>
-			<span class="pmpro_checkout-h3-name"><?php _e('Choose Your Payment Method', 'pmpro');?></span>
-		</h3>
-		<div class="pmpro_checkout-fields">
-			<?php if($setting_gateway != 'check') { ?>
-			<span class="gateway_<?php echo esc_attr($setting_gateway); ?>">
-				<input type="radio" name="gateway" value="<?php echo esc_attr($setting_gateway);?>" <?php if(!$gateway || $gateway == $setting_gateway) { ?>checked="checked"<?php } ?> />
-				<a href="javascript:void(0);" class="pmpro_radio"><?php _e('Check Out with a Credit Card Here', 'pmpro');?></a> &nbsp;
-			</span>
-			<?php } ?>
-			<span class="gateway_paypalexpress">
-				<input type="radio" name="gateway" value="paypalexpress" <?php if($gateway == "paypalexpress") { ?>checked="checked"<?php } ?> />
-				<a href="javascript:void(0);" class="pmpro_radio"><?php _e('Check Out with PayPal', 'pmpro');?></a> &nbsp;
-			</span>
-
-			<?php
-				//integration with the PMPro Pay by Check Addon
-				if(function_exists('pmpropbc_checkout_boxes')) {
-					global $gateway, $pmpro_level, $pmpro_review;
-					$gateway_setting = pmpro_getOption("gateway");
-					$options = pmpropbc_getOptions($pmpro_level->id);
-
-					//only show if the main gateway is not check and setting value == 1 (value == 2 means only do check payments)
-					if($gateway_setting != "check" && $options['setting'] == 1) {
-					?>
-					<span class="gateway_check">
-						<input type="radio" name="gateway" value="check" <?php if($gateway == "check") { ?>checked="checked"<?php } ?> />
-						<a href="javascript:void(0);" class="pmpro_radio"><?php _e('Pay by Check', 'pmpropbc');?></a>
-					</span>
-					<?php
-					}
-				}
-			?>
-		</div> <!-- end pmpro_checkout-fields -->
-	</div> <!--end pmpro_payment_method -->
-	<?php
-		//Here we draw the PayPal Express button, which gets moved in place by JavaScript
-		//But if the current gateway is PayPalExpress, this span will already have been added
-		if( $gateway != 'paypalexpress' ) {
-		?>
-		<span id="pmpro_paypalexpress_checkout" style="display: none;">
-			<input type="hidden" name="submit-checkout" value="1" />
-			<input type="image" class="pmpro_btn-submit-checkout" value="<?php _e('Check Out with PayPal', 'pmpro');?> &raquo;" src="<?php echo apply_filters("pmpro_paypal_button_image", "https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif");?>" />
-		</span>
-	<?php
-		}
 	?>
 	<script>
 		var pmpro_require_billing = <?php if($pmpro_requirebilling) echo "true"; else echo "false";?>;
@@ -190,11 +139,13 @@ function pmproappe_pmpro_checkout_boxes()
 					showCreditCardCheckout();
 				}
 			});
+			
+			var checkedGateway = jQuery('input[name=gateway]:checked').val();
 
 			//update radio on page load
-			if(jQuery('input[name=gateway]:checked').val() == 'check') {
+			if(checkedGateway == 'check') {
 				showCheckCheckout();
-			} else if(jQuery('input[name=gateway]:checked').val() != 'paypalexpress' && pmpro_require_billing == true) {
+			} else if(checkedGateway != 'paypalexpress' && pmpro_require_billing == true) {
 				showCreditCardCheckout();
 			} else if(pmpro_require_billing == true) {
 				showPayPalExpressCheckout();
@@ -209,6 +160,65 @@ function pmproappe_pmpro_checkout_boxes()
 		});
 	</script>
 	<?php
+
+	//only show this if we're not reviewing and the setting gateway isn't a PayPal gateway
+	if( empty($pmpro_review) ) {
+	?>
+	<div id="pmpro_payment_method" class="pmpro_checkout" <?php if(!$pmpro_requirebilling) { ?>style="display: none;"<?php } ?>>
+		<hr />
+		<h3>
+			<span class="pmpro_checkout-h3-name"><?php _e('Choose Your Payment Method', 'pmpro');?></span>
+		</h3>
+		<div class="pmpro_checkout-fields">
+			<?php if($setting_gateway != 'check') { ?>
+			<span class="gateway_<?php echo esc_attr($setting_gateway); ?>">
+				<input type="radio" name="gateway" value="<?php echo esc_attr($setting_gateway);?>" <?php if(!$gateway || $gateway == $setting_gateway) { ?>checked="checked"<?php } ?> />
+				<a href="javascript:void(0);" class="pmpro_radio"><?php _e('Check Out with a Credit Card Here', 'pmpro');?></a> &nbsp;
+			</span>
+			<?php } ?>
+			<span class="gateway_paypalexpress">
+				<input type="radio" name="gateway" value="paypalexpress" <?php if($gateway == "paypalexpress") { ?>checked="checked"<?php } ?> />
+				<a href="javascript:void(0);" class="pmpro_radio"><?php _e('Check Out with PayPal', 'pmpro');?></a> &nbsp;
+			</span>
+
+			<?php
+				//integration with the PMPro Pay by Check Addon
+				if(function_exists('pmpropbc_checkout_boxes')) {
+					global $gateway, $pmpro_level, $pmpro_review;
+					$gateway_setting = pmpro_getOption("gateway");
+					$options = pmpropbc_getOptions($pmpro_level->id);
+
+					//only show if the main gateway is not check and setting value == 1 (value == 2 means only do check payments)
+					if($gateway_setting != "check" && $options['setting'] == 1) {
+					?>
+					<span class="gateway_check">
+						<input type="radio" name="gateway" value="check" <?php if($gateway == "check") { ?>checked="checked"<?php } ?> />
+						<a href="javascript:void(0);" class="pmpro_radio"><?php _e('Pay by Check', 'pmpropbc');?></a>
+					</span>
+					<?php
+					}
+				}
+			?>
+		</div> <!-- end pmpro_checkout-fields -->
+	</div> <!--end pmpro_payment_method -->
+	<?php
+		//Here we draw the PayPal Express button, which gets moved in place by JavaScript
+		//But if the current gateway is PayPalExpress, this span will already have been added
+		if( $gateway != 'paypalexpress' ) {
+		?>
+		<span id="pmpro_paypalexpress_checkout" style="display: none;">
+			<input type="hidden" name="submit-checkout" value="1" />
+			<input type="image" class="pmpro_btn-submit-checkout" value="<?php _e('Check Out with PayPal', 'pmpro');?> &raquo;" src="<?php echo apply_filters("pmpro_paypal_button_image", "https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif");?>" />
+		</span>
+	<?php
+		}
+	}
+	// Draw an invisible gateway checkbox so we know we're using paypal express if the user submits form with errors and we're not reviewing
+	elseif ( $gateway = 'paypalexpress' && !empty($pmpro_msg) && empty( $pmpro_review ) ) 
+	{
+		?>
+		<input type="radio" name="gateway" value="paypalexpress" checked="checked" style="display: none;" ?>
+		<?php
 	}
 	else
 	{
@@ -224,6 +234,29 @@ function pmproappe_pmpro_checkout_boxes()
 	}
 }
 add_action("pmpro_checkout_boxes", "pmproappe_pmpro_checkout_boxes", 20);
+
+
+/*
+	Include billing address fields depending on our main gateway setting
+*/
+function pmproappe_pmpro_include_billing_address_fields() {
+	global $gateway;
+
+	// are we using a gateway that isn't paypal express?
+	if( ( $gateway != 'paypalexpress' ) ) {
+
+		// if so, save information about whether we need to include billing fields in the session
+		$_SESSION['pmproappe_include_billing'] = var_export( apply_filters('pmpro_include_billing_address_fields', true), true );
+
+	}
+	// if we already have a session variable, filter billing fields based on what we saved
+	elseif ( isset( $_SESSION['pmproappe_include_billing'] ) )
+	{
+		$include_billing_fields = $_SESSION['pmproappe_include_billing'];
+		add_filter('pmpro_include_billing_address_fields', "__return_$include_billing_fields", 30);
+	}
+}
+add_action('pmpro_checkout_preheader', 'pmproappe_pmpro_include_billing_address_fields', 10, 1);
 
 /*
 	Integration with the PMPro Pay by Check Addon.
