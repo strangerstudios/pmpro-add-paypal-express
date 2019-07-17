@@ -291,7 +291,6 @@ function pmproappe_pmpro_applydiscountcode_return_js($discount_code, $discount_c
 			pmpro_require_billing = false;
 		}
 
-		pmpro_require_billing = true;
 	<?php
 	}
 }
