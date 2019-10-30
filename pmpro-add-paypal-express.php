@@ -3,7 +3,7 @@
 Plugin Name: Paid Memberships Pro - Add PayPal Express Add On
 Plugin URI: https://www.paidmembershipspro.com/add-ons/pmpro-add-paypal-express-option-checkout/
 Description: Add PayPal Express as a Second Option at Checkout
-Version: .5.3
+Version: .6
 Author: Paid Memberships Pro
 Author URI: https://www.paidmembershipspro.com
 Text Domain: pmpro-add-paypal-express
