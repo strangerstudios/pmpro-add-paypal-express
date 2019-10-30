@@ -6,6 +6,8 @@ Description: Add PayPal Express as a Second Option at Checkout
 Version: .5.3
 Author: Paid Memberships Pro
 Author URI: https://www.paidmembershipspro.com
+Text Domain: pmpro-add-paypal-express
+Domain Path: /languages
 */
 /*
 	You must have your PayPal Express API key, username, and password set in the PMPro Payment Settings for this plugin to work.
@@ -20,6 +22,11 @@ Author URI: https://www.paidmembershipspro.com
 	* PayPal Payflow Pro
 	* Cybersource
 */
+
+function pmpro_add_paypal_express_i18n() {
+	load_plugin_textdomain( 'pmpro-add-paypal-express', false, basename( dirname( __FILE__ ) ) . '/languages' ); 
+}
+add_action( 'plugins_loaded', 'pmpro_add_paypal_express_i18n', 10 );
 
 function pmpro_add_paypal_express_register_styles() {
 	wp_register_style( 'pmpro-add-paypal-express-styles', plugins_url( 'css/pmpro-add-paypal-express.css', __FILE__ ) );
@@ -83,18 +90,18 @@ function pmproappe_pmpro_checkout_boxes()
 	<div id="pmpro_payment_method" class="pmpro_checkout" <?php if(!$pmpro_requirebilling) { ?>style="display: none;"<?php } ?>>
 		<hr />
 		<h3>
-			<span class="pmpro_checkout-h3-name"><?php _e('Choose Your Payment Method', 'pmpro');?></span>
+			<span class="pmpro_checkout-h3-name"><?php _e('Choose Your Payment Method', 'pmpro-add-paypal-express');?></span>
 		</h3>
 		<div class="pmpro_checkout-fields">
 			<?php if($setting_gateway != 'check') { ?>
 			<span class="gateway_<?php echo esc_attr($setting_gateway); ?>">
 				<input type="radio" name="gateway" value="<?php echo esc_attr($setting_gateway);?>" <?php if(!$gateway || $gateway == $setting_gateway) { ?>checked="checked"<?php } ?> />
-				<a href="javascript:void(0);" class="pmpro_radio"><?php _e('Check Out with a Credit Card Here', 'pmpro');?></a> &nbsp;
+				<a href="javascript:void(0);" class="pmpro_radio"><?php _e('Check Out with a Credit Card Here', 'pmpro-add-paypal-express');?></a> &nbsp;
 			</span>
 			<?php } ?>
 			<span class="gateway_paypalexpress">
 				<input type="radio" name="gateway" value="paypalexpress" <?php if($gateway == "paypalexpress") { ?>checked="checked"<?php } ?> />
-				<a href="javascript:void(0);" class="pmpro_radio"><?php _e('Check Out with PayPal', 'pmpro');?></a> &nbsp;
+				<a href="javascript:void(0);" class="pmpro_radio"><?php _e('Check Out with PayPal', 'pmpro-add-paypal-express');?></a> &nbsp;
 			</span>
 
 			<?php
@@ -109,7 +116,7 @@ function pmproappe_pmpro_checkout_boxes()
 					?>
 					<span class="gateway_check">
 						<input type="radio" name="gateway" value="check" <?php if($gateway == "check") { ?>checked="checked"<?php } ?> />
-						<a href="javascript:void(0);" class="pmpro_radio"><?php _e('Pay by Check', 'pmpropbc');?></a>
+						<a href="javascript:void(0);" class="pmpro_radio"><?php _e('Pay by Check', 'pmpro-add-paypal-express');?></a>
 					</span>
 					<?php
 					}
@@ -124,7 +131,7 @@ function pmproappe_pmpro_checkout_boxes()
 		?>
 		<span id="pmpro_paypalexpress_checkout" style="display: none;">
 			<input type="hidden" name="submit-checkout" value="1" />
-			<input type="image" class="pmpro_btn-submit-checkout" value="<?php _e('Check Out with PayPal', 'pmpro');?> &raquo;" src="<?php echo apply_filters("pmpro_paypal_button_image", "https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif");?>" />
+			<input type="image" class="pmpro_btn-submit-checkout" value="<?php _e('Check Out with PayPal', 'pmpro-add-paypal-express');?> &raquo;" src="<?php echo apply_filters("pmpro_paypal_button_image", "https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif");?>" />
 		</span>
 	<?php
 		}
@@ -291,7 +298,6 @@ function pmproappe_pmpro_applydiscountcode_return_js($discount_code, $discount_c
 			pmpro_require_billing = false;
 		}
 
-		pmpro_require_billing = true;
 	<?php
 	}
 }
@@ -309,7 +315,7 @@ function pmproappe_admin_notices() {
 		if( $gateway == 'paypal' || $gateway == 'paypalexpress' ) {
 		?>
 		<div class="notice notice-warning is-dismissible">
-			<p><?php echo __( 'The Add PayPal Express Add On is not required with the chosen gateway. Change the gateway setting below or deactivate the addon.', 'pmproappe' ) ;?></p>
+			<p><?php echo __( 'The Add PayPal Express Add On is not required with the chosen gateway. Change the gateway setting below or deactivate the addon.', 'pmpro-add-paypal-express' ) ;?></p>
 		</div>
 		<?php
 		}
@@ -345,8 +351,8 @@ function pmproappe_plugin_row_meta($links, $file) {
 	if(strpos($file, 'pmpro-add-paypal-express.php') !== false)
 	{
 		$new_links = array(
-			'<a href="' . esc_url('https://www.paidmembershipspro.com/add-ons/pmpro-add-paypal-express-option-checkout/')  . '" title="' . esc_attr( __( 'View Documentation', 'pmpro' ) ) . '">' . __( 'Docs', 'pmpro' ) . '</a>',
-			'<a href="' . esc_url('http://paidmembershipspro.com/support/') . '" title="' . esc_attr( __( 'Visit Customer Support Forum', 'pmpro' ) ) . '">' . __( 'Support', 'pmpro' ) . '</a>',
+			'<a href="' . esc_url('https://www.paidmembershipspro.com/add-ons/pmpro-add-paypal-express-option-checkout/')  . '" title="' . esc_attr( __( 'View Documentation', 'pmpro-add-paypal-express' ) ) . '">' . __( 'Docs', 'pmpro-add-paypal-express' ) . '</a>',
+			'<a href="' . esc_url('http://paidmembershipspro.com/support/') . '" title="' . esc_attr( __( 'Visit Customer Support Forum', 'pmpro-add-paypal-express' ) ) . '">' . __( 'Support', 'pmpro-add-paypal-express' ) . '</a>',
 		);
 		$links = array_merge($links, $new_links);
 	}

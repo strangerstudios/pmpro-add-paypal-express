@@ -1,0 +1,85 @@
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Project-Id-Version: Paid Memberships Pro - Add PayPal Express Add On\n"
+"POT-Creation-Date: 2019-02-14 15:12+0200\n"
+"PO-Revision-Date: 2019-02-21 22:37+0200\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2.1\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: pmpro-add-paypal-express.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;"
+"esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;"
+"esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"Last-Translator: \n"
+"Language: fr_FR\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: pmpro-add-paypal-express.php:93
+msgid "Choose Your Payment Method"
+msgstr "Choisissez votre Moyen de paiement"
+
+#: pmpro-add-paypal-express.php:99
+msgid "Check Out with a Credit Card Here"
+msgstr "Réglez avec une carte de crédit ici"
+
+#: pmpro-add-paypal-express.php:104 pmpro-add-paypal-express.php:134
+msgid "Check Out with PayPal"
+msgstr "Réglez avec PayPal"
+
+#: pmpro-add-paypal-express.php:119
+msgid "Pay by Check"
+msgstr "Payez par chèque"
+
+#: pmpro-add-paypal-express.php:319
+msgid ""
+"The Add PayPal Express Add On is not required with the chosen gateway. "
+"Change the gateway setting below or deactivate the addon."
+msgstr ""
+"L’ajout du complément “PayPal Express” n’est pas requis avec la "
+"présente passerelle. Changez le réglage de la passerelle ou désactiver "
+"le complément."
+
+#: pmpro-add-paypal-express.php:334
+msgid "View Documentation"
+msgstr "Voir la documentation"
+
+#: pmpro-add-paypal-express.php:334
+msgid "Docs"
+msgstr "Documents"
+
+#: pmpro-add-paypal-express.php:335
+msgid "Visit Customer Support Forum"
+msgstr "Consultez le forum de support"
+
+#: pmpro-add-paypal-express.php:335
+msgid "Support"
+msgstr "Soutien"
+
+#. Plugin Name of the plugin/theme
+msgid "Paid Memberships Pro - Add PayPal Express Add On"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid ""
+"https://www.paidmembershipspro.com/add-ons/pmpro-add-paypal-express-"
+"option-checkout/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Add PayPal Express as a Second Option at Checkout"
+msgstr "Ajouter Paypal Express comme seconde option de mode de paiement"
+
+#. Author of the plugin/theme
+msgid "Paid Memberships Pro"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://www.paidmembershipspro.com"
+msgstr ""
