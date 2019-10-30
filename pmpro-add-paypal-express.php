@@ -318,6 +318,27 @@ function pmproappe_admin_notices() {
 add_action('admin_notices', 'pmproappe_admin_notices');
 
 /*
+	In PMPro core, the PayPal Express class hooks into pmpro_include_billing_address_fields
+	and pmpro_include_payment_information_fields to keep those checkout sections from being shown.
+	Some gateways, like Authorize.net and the default testing gateway need those fields to be shown.
+	
+	We remove any filter on pmpro_include_billing_address_fields and pmpro_include_payment_information_fields
+	that simply returns false (like the ones in the PayPal Express gateway class), but this won't affect filters
+	that override the billing and payment info fields with their own (like Stripe).
+	
+	The JS in this Add On will then hide/show the fields based on which gateway option is chosen.
+*/
+function pmproappe_include_billing_and_payment_fields() {
+	global $gateway;
+		
+	if ( $gateway == 'paypalexpress' ) {
+		remove_filter( 'pmpro_include_billing_address_fields', '__return_false' );
+		remove_filter( 'pmpro_include_payment_information_fields', '__return_false' );
+	}	
+}
+add_action('pmpro_checkout_preheader', 'pmproappe_include_billing_and_payment_fields' );
+
+/*
 	Function to add links to the plugin row meta
 */
 function pmproappe_plugin_row_meta($links, $file) {
