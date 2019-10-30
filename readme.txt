@@ -2,8 +2,8 @@
 Contributors: strangerstudios
 Tags: pmpro, paid memberships pro, gateway, paypal, checkout, registration
 Requires at least: 4.0
-Tested up to: 4.9.8
-Stable tag: .5.3
+Tested up to: 5.2.4
+Stable tag: .6
 
 Appeal to the highest number of potential customers by offering PayPal as a payment option in addition to your onsite credit card payment gateway.
 
@@ -45,6 +45,11 @@ This plugin will only work when the primary gateway is an onsite gateway. At thi
 Please post it in the issues section of GitHub and we'll fix it as soon as we can. Thanks for helping. https://github.com/strangerstudios/pmpro-add-paypal-express/issues
 
 == Changelog ==
+= .6
+* ENHANCEMENT: Reading for localization.
+* ENHANCEMENT: Added French translation.
+* BUG FIX: Fixed issues where the billing address fields or payment info fields wouldn't show up if you switched back to the default gateway after getting an error with PayPal.
+
 = .5.3 =
 * BUG FIX: Fixed bug where a second PayPal button was shown if the Pay by Check add-on was also active and there were errors on checkout submission.
 
