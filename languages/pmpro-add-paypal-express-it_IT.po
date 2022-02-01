@@ -73,7 +73,7 @@ msgstr ""
 
 #. Description of the plugin/theme
 msgid "Add PayPal Express as a Second Option at Checkout"
-msgstr "Aggiunge PayPal Express come seconda metodo di pagamento"
+msgstr "Aggiunge PayPal Express come secondo metodo di pagamento"
 
 #. Author of the plugin/theme
 msgid "Paid Memberships Pro"
