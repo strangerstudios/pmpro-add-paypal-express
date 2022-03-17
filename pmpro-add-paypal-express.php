@@ -138,11 +138,16 @@ function pmproappe_pmpro_checkout_boxes()
 	?>
 	<script>
 		var pmpro_require_billing = <?php if($pmpro_requirebilling) echo "true"; else echo "false";?>;
+        var pmpro_paypal_billingaddress = <?php if ( pmpro_getOption( "paypal_billingaddress" ) ) echo "true"; else echo "false";?>;
 
-		//hide/show functions
-		function showPayPalExpressCheckout()
-		{
-			jQuery('#pmpro_billing_address_fields').hide();
+        //hide/show functions
+        function showPayPalExpressCheckout() {
+            if (!pmpro_paypal_billingaddress) {
+                jQuery('#pmpro_billing_address_fields').hide();
+            } else {
+                jQuery('#pmpro_billing_address_fields').show();
+            }
+
 			jQuery('#pmpro_payment_information_fields').hide();
 			jQuery('#pmpro_submit_span').hide();
 			jQuery('#pmpro_paypalexpress_checkout').show();
@@ -281,7 +286,12 @@ function pmproappe_pmpro_applydiscountcode_return_js($discount_code, $discount_c
 		}
 		else if(pmpro_require_billing == true)
 		{
-			jQuery('#pmpro_billing_address_fields').hide();
+            if (!pmpro_paypal_billingaddress) {
+                jQuery('#pmpro_billing_address_fields').hide();
+            } else {
+                jQuery('#pmpro_billing_address_fields').show();
+            }
+
 			jQuery('#pmpro_payment_information_fields').hide();
 			jQuery('#pmpro_submit_span').hide();
 			jQuery('#pmpro_paypalexpress_checkout').show();
