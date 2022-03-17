@@ -335,6 +335,12 @@ add_action('admin_notices', 'pmproappe_admin_notices');
 	The JS in this Add On will then hide/show the fields based on which gateway option is chosen.
 */
 function pmproappe_include_billing_and_payment_fields() {
+	//if already using paypal, ignore this
+	$setting_gateway = get_option("pmpro_gateway");
+	if(pmproappe_using_paypal( $setting_gateway )) {
+		return;
+	}
+
 	global $gateway;
 		
 	if ( $gateway == 'paypalexpress' ) {
