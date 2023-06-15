@@ -40,7 +40,7 @@ add_action( 'wp_enqueue_scripts', 'pmpro_add_paypal_express_register_styles' );
 function pmproappe_pmpro_valid_gateways($gateways)
 {
     //if already using paypal, ignore this
-	$setting_gateway = get_option("pmpro_gateway");
+	$setting_gateway = get_option("pmpro_pmpro_gateway");
 
 	if(pmproappe_using_paypal( $setting_gateway )) {
 		return $gateways;
@@ -108,7 +108,7 @@ function pmproappe_pmpro_checkout_boxes()
 				//integration with the PMPro Pay by Check Addon
 				if(function_exists('pmpropbc_checkout_boxes')) {
 					global $gateway, $pmpro_level, $pmpro_review;
-					$gateway_setting = pmpro_getOption("gateway");
+					$gateway_setting = get_option("pmpro_gateway");
 					$options = pmpropbc_getOptions($pmpro_level->id);
 
 					//only show if the main gateway is not check and setting value == 1 (value == 2 means only do check payments)
