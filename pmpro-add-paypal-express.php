@@ -23,6 +23,8 @@ Domain Path: /languages
 	* Cybersource
 */
 
+require_once( ABSPATH . 'wp-content/plugins/paid-memberships-pro/classes/gateways/class.pmprogateway_helper.php');
+
 function pmpro_add_paypal_express_i18n() {
 	load_plugin_textdomain( 'pmpro-add-paypal-express', false, basename( dirname( __FILE__ ) ) . '/languages' ); 
 }
@@ -92,17 +94,20 @@ function pmproappe_pmpro_checkout_boxes()
 		<h3>
 			<span class="pmpro_checkout-h3-name"><?php _e('Choose Your Payment Method', 'pmpro-add-paypal-express');?></span>
 		</h3>
-		<div class="pmpro_checkout-fields">
+		<div class="pmpro_checkout-fields payments">
 			<?php if($setting_gateway != 'check') { ?>
-			<span class="gateway_<?php echo esc_attr($setting_gateway); ?>">
-				<input type="radio" name="gateway" value="<?php echo esc_attr($setting_gateway);?>" <?php if(!$gateway || $gateway == $setting_gateway) { ?>checked="checked"<?php } ?> />
-				<a href="javascript:void(0);" class="pmpro_radio"><?php _e('Check Out with a Credit Card Here', 'pmpro-add-paypal-express');?></a> &nbsp;
-			</span>
+			<div class="gateway_<?php echo esc_attr($setting_gateway); ?> gateway-radio-wrapper">
+				<input type="radio" name="gateway" id="radio_gateway_<?php echo $setting_gateway;?>" value="<?php echo esc_attr($setting_gateway);?>" <?php if(!$gateway || $gateway == $setting_gateway) { ?>checked="checked"<?php } ?> />
+                <label for="radio_gateway_<?php echo $setting_gateway;?>" class="pmpro_radio">
+                        <?php echo PMProGateway_Helper::pmpro_gateway_label($setting_gateway); ?>
+                </label>
 			<?php } ?>
-			<span class="gateway_paypalexpress">
-				<input type="radio" name="gateway" value="paypalexpress" <?php if($gateway == "paypalexpress") { ?>checked="checked"<?php } ?> />
-				<a href="javascript:void(0);" class="pmpro_radio"><?php _e('Check Out with PayPal', 'pmpro-add-paypal-express');?></a> &nbsp;
-			</span>
+			<div class="gateway_paypalexpress gateway-radio-wrapper">
+				<input type="radio" name="gateway" id="radio_gateway_paypalexpress" value="paypalexpress" <?php if($gateway == "paypalexpress") { ?>checked="checked"<?php } ?> />
+                <label for="radio_gateway_paypalexpress" class="pmpro_radio">
+                        <?php echo PMProGateway_Helper::pmpro_gateway_label("paypalexpress"); ?>
+                </label>
+            </div>
 
 			<?php
 				//integration with the PMPro Pay by Check Addon
@@ -114,10 +119,12 @@ function pmproappe_pmpro_checkout_boxes()
 					//only show if the main gateway is not check and setting value == 1 (value == 2 means only do check payments)
 					if($gateway_setting != "check" && $options['setting'] == 1) {
 					?>
-					<span class="gateway_check">
-						<input type="radio" name="gateway" value="check" <?php if($gateway == "check") { ?>checked="checked"<?php } ?> />
-						<a href="javascript:void(0);" class="pmpro_radio"><?php _e('Pay by Check', 'pmpro-add-paypal-express');?></a>
-					</span>
+					<div class="gateway_check gateway-radio-wrapper">
+						<input type="radio" name="gateway" id="radio_gateway_check" value="check" <?php if($gateway == "check") { ?>checked="checked"<?php } ?> />
+                        <label for="radio_gateway_check" class="pmpro_radio">
+                            <?php echo PMProGateway_Helper::pmpro_gateway_label("check"); ?>
+                        </label>
+                    </div>
 					<?php
 					}
 				}

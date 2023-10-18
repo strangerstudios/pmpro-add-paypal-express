@@ -1,8 +1,17 @@
 @charset "UTF-8";
 /* CSS Document */
 
-#pmpro_payment_method .pmpro_checkout-fields {margin-bottom: 1em; }
-#pmpro_payment_method span.gateway_paypalexpress {margin-left: 2em; }
+.pmpro_checkout-fields.payments {
+    display: flex;
+    gap: 20px;
+}
+
+form#pmpro_form .pmpro_checkout-fields .gateway-radio-wrapper {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 0;
+    align-items: center;
+}
 
 @media only screen and (max-width: 767px) {
 	#pmpro_payment_method span.gateway_paypalexpress {
