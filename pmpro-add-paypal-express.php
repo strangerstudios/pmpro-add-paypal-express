@@ -92,32 +92,32 @@ function pmproappe_pmpro_checkout_boxes()
 		<h3>
 			<span class="pmpro_checkout-h3-name"><?php _e('Choose Your Payment Method', 'pmpro-add-paypal-express');?></span>
 		</h3>
-		<div class="pmpro_checkout-fields">
-			<?php if($setting_gateway != 'check') { ?>
-			<span class="gateway_<?php echo esc_attr($setting_gateway); ?>">
-				<input type="radio" name="gateway" value="<?php echo esc_attr($setting_gateway);?>" <?php if(!$gateway || $gateway == $setting_gateway) { ?>checked="checked"<?php } ?> />
-				<a href="javascript:void(0);" class="pmpro_radio"><?php _e('Check Out with a Credit Card Here', 'pmpro-add-paypal-express');?></a> &nbsp;
-			</span>
+		<div class="pmpro_checkout-fields pmpro_add_paypal_express">
+			<?php if( $setting_gateway != 'check' ) { ?>
+				<div class="gateway <?php echo esc_attr( $setting_gateway ); ?>">
+					<input type="radio" name="gateway" id ="<?php echo esc_attr( $setting_gateway ) ?>" value="<?php echo esc_attr( $setting_gateway );?>" <?php if( !$gateway || $gateway == $setting_gateway ) { ?>checked="checked"<?php } ?> />
+					<?php echo pmpro_paypal_gateway_label( $setting_gateway ) ?>
+				</div>
 			<?php } ?>
-			<span class="gateway_paypalexpress">
-				<input type="radio" name="gateway" value="paypalexpress" <?php if($gateway == "paypalexpress") { ?>checked="checked"<?php } ?> />
-				<a href="javascript:void(0);" class="pmpro_radio"><?php _e('Check Out with PayPal', 'pmpro-add-paypal-express');?></a> &nbsp;
-			</span>
+			<div class="gateway paypalexpress">
+				<input type="radio" name="gateway" id="paypalexpress" value="paypalexpress" <?php if($gateway == "paypalexpress") { ?>checked="checked"<?php } ?> />
+				<?php echo pmpro_paypal_gateway_label( "paypalexpress" ) ?>
+			</div>
 
 			<?php
 				//integration with the PMPro Pay by Check Addon
-				if(function_exists('pmpropbc_checkout_boxes')) {
+				if(function_exists( 'pmpropbc_checkout_boxes' )) {
 					global $gateway, $pmpro_level, $pmpro_review;
-					$gateway_setting = pmpro_getOption("gateway");
-					$options = pmpropbc_getOptions($pmpro_level->id);
+					$setting_gateway = pmpro_getOption( "gateway" );
+					$options = pmpropbc_getOptions( $pmpro_level->id );
 
 					//only show if the main gateway is not check and setting value == 1 (value == 2 means only do check payments)
-					if($gateway_setting != "check" && $options['setting'] == 1) {
+					if( $setting_gateway != "check" && $options['setting'] == 1 ) {
 					?>
-					<span class="gateway_check">
-						<input type="radio" name="gateway" value="check" <?php if($gateway == "check") { ?>checked="checked"<?php } ?> />
-						<a href="javascript:void(0);" class="pmpro_radio"><?php _e('Pay by Check', 'pmpro-add-paypal-express');?></a>
-					</span>
+					<div class="gateway check">
+						<input type="radio" name="gateway" id="check" value="check" <?php if( $gateway == "check" ) { ?>checked="checked"<?php } ?> />
+						<?php echo pmpro_paypal_gateway_label( "check" ) ?>
+					</div>
 					<?php
 					}
 				}
@@ -131,7 +131,7 @@ function pmproappe_pmpro_checkout_boxes()
 		?>
 		<span id="pmpro_paypalexpress_checkout" style="display: none;">
 			<input type="hidden" name="submit-checkout" value="1" />
-			<input type="image" class="pmpro_btn-submit-checkout" value="<?php _e('Check Out with PayPal', 'pmpro-add-paypal-express');?> &raquo;" src="<?php echo apply_filters("pmpro_paypal_button_image", "https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif");?>" />
+			<input type="image" class="pmpro_btn-submit-checkout" value="<?php echo esc_attr( 'Check Out with PayPal', 'pmpro-add-paypal-express' );?>" src="<?php echo apply_filters( "pmpro_paypal_button_image", "https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" );?>" />
 		</span>
 	<?php
 		}
@@ -359,3 +359,40 @@ function pmproappe_plugin_row_meta($links, $file) {
 	return $links;
 }
 add_filter('plugin_row_meta', 'pmproappe_plugin_row_meta', 10, 2);
+
+
+function pmpro_paypal_gateway_label_text( $setting_gateway ) {
+
+	switch ( $setting_gateway ) {
+		case 'check':
+			if ( ! isset( $check_gateway_label) ) {
+				$gateway_label = __( 'Pay by Check', 'pmpro-add-paypal-express' );
+			} else {
+				$gateway_label = __( 'Pay by ', 'pmpro-add-paypal-express' ) . $check_gateway_label;
+			}
+			break;
+		case 'paypalexpress':
+		case 'paypalstandard':
+			$gateway_label = __( 'Pay with PayPal', 'pmpro-add-paypal-express' );
+			break;
+		case 'twocheckout':
+			$gateway_label = __( 'Pay with 2Checkout', 'pmpro-add-paypal-express' );
+			break;
+		case 'payfast':
+			$gateway_label = __( 'Pay with PayFast', 'pmpro-add-paypal-express' );
+			break;
+		case 'stripe':
+		default:
+			$gateway_label = __( 'Pay by Credit Card', 'pmpro-add-paypal-express' );
+			break;
+	}
+	return $gateway_label;
+}
+
+function pmpro_paypal_gateway_label( $setting_gateway ) {
+
+	$gateway_label_text = esc_html( pmpro_paypal_gateway_label_text( $setting_gateway ) );
+
+	$gateway_label =  '<label for="' . esc_attr( $setting_gateway ) . '">' . $gateway_label_text . '</label>';
+	return  $gateway_label = apply_filters( 'pmpro_paypal_gateway_label_filter', $gateway_label, $setting_gateway );
+}
