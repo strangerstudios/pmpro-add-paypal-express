@@ -9,64 +9,74 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-01-22T10:36:28+00:00\n"
+"POT-Creation-Date: 2024-01-22T10:36:29+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.9.0\n"
 "X-Domain: pmpro-add-paypal-express\n"
 
-#. Plugin Name of the plugin
-msgid "Paid Memberships Pro - Add PayPal Express Add On"
-msgstr ""
-
-#. Plugin URI of the plugin
-msgid "https://www.paidmembershipspro.com/add-ons/pmpro-add-paypal-express-option-checkout/"
-msgstr ""
-
-#. Description of the plugin
-msgid "Add PayPal Express as a Second Option at Checkout"
-msgstr ""
-
-#. Author of the plugin
-msgid "Paid Memberships Pro"
-msgstr ""
-
-#. Author URI of the plugin
-msgid "https://www.paidmembershipspro.com"
-msgstr ""
-
 #: pmpro-add-paypal-express.php:93
 msgid "Choose Your Payment Method"
-msgstr ""
+msgstr "Metodo di pagamento"
 
 #: pmpro-add-paypal-express.php:99
 msgid "Check Out with a Credit Card Here"
-msgstr ""
+msgstr "Carta di credito"
 
 #: pmpro-add-paypal-express.php:104
 #: pmpro-add-paypal-express.php:134
 msgid "Check Out with PayPal"
-msgstr ""
+msgstr "PayPal"
 
 #: pmpro-add-paypal-express.php:119
 msgid "Pay by Check"
-msgstr ""
+msgstr "Contrassegno"
 
+#: pmpro-add-paypal-express.php:319
 #: pmpro-add-paypal-express.php:318
 msgid "The Add PayPal Express Add On is not required with the chosen gateway. Change the gateway setting below or deactivate the addon."
-msgstr ""
+msgstr "L’addon “Add PayPal Express” non è necessario con il gateway selezionato. Cambia gateway o disattiva l’addon."
 
+#: pmpro-add-paypal-express.php:334
 #: pmpro-add-paypal-express.php:354
 msgid "View Documentation"
-msgstr ""
+msgstr "Vedi documentazione"
 
+#: pmpro-add-paypal-express.php:334
 #: pmpro-add-paypal-express.php:354
 msgid "Docs"
 msgstr ""
 
+#: pmpro-add-paypal-express.php:335
 #: pmpro-add-paypal-express.php:355
 msgid "Visit Customer Support Forum"
-msgstr ""
+msgstr "Vai al forum di supporto"
 
+#: pmpro-add-paypal-express.php:335
 #: pmpro-add-paypal-express.php:355
 msgid "Support"
+msgstr "Supporto"
+
+#. Plugin Name of the plugin/theme
+#. Plugin Name of the plugin
+msgid "Paid Memberships Pro - Add PayPal Express Add On"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+#. Plugin URI of the plugin
+msgid "https://www.paidmembershipspro.com/add-ons/pmpro-add-paypal-express-option-checkout/"
+msgstr ""
+
+#. Description of the plugin/theme
+#. Description of the plugin
+msgid "Add PayPal Express as a Second Option at Checkout"
+msgstr "Aggiunge PayPal Express come secondo metodo di pagamento"
+
+#. Author of the plugin/theme
+#. Author of the plugin
+msgid "Paid Memberships Pro"
+msgstr ""
+
+#. Author URI of the plugin/theme
+#. Author URI of the plugin
+msgid "https://www.paidmembershipspro.com"
 msgstr ""
