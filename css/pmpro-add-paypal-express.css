@@ -10,3 +10,13 @@
 		margin: 1em 0 0 0;
 	}
 }
+
+.pmpro_checkout-fields.pmpro_add_paypal_express {
+	display: flex;
+    gap: 20px;
+}
+
+.pmpro_checkout-fields.pmpro_add_paypal_express .gateway {
+	display: flex;
+	gap: 5px;
+}
