@@ -34,22 +34,26 @@ function pmpro_add_paypal_express_register_styles() {
 }
 add_action( 'wp_enqueue_scripts', 'pmpro_add_paypal_express_register_styles' );
 
-/*
-	Make PayPal Express a valid gateway.
-*/
-function pmproappe_pmpro_valid_gateways($gateways)
-{
-    //if already using paypal, ignore this
-	$setting_gateway = get_option("pmpro_pmpro_gateway");
+/**
+ * Make PayPal Express a valid gateway.
+ *
+ * @param array $gateways Array of valid gateways.
+ */
+function pmproappe_pmpro_valid_gateways( $gateways ) {
+	// Get the current gateway setting.
+	$setting_gateway = get_option( 'pmpro_gateway' );
 
-	if(pmproappe_using_paypal( $setting_gateway )) {
+	// If PayPal is already the current gateway, ignore this.
+	if ( pmproappe_using_paypal( $setting_gateway ) ) {
 		return $gateways;
 	}
 
+	// Add PayPal Express to the list of valid gateways.
 	$gateways[] = "paypalexpress";
-    return $gateways;
+
+	return $gateways;
 }
-add_filter("pmpro_valid_gateways", "pmproappe_pmpro_valid_gateways");
+add_filter( 'pmpro_valid_gateways', 'pmproappe_pmpro_valid_gateways' );
 
 /*
 	Check if a PayPal gateway is enabled for PMPro.
@@ -105,14 +109,14 @@ function pmproappe_pmpro_checkout_boxes()
 			</span>
 
 			<?php
-				//integration with the PMPro Pay by Check Addon
-				if(function_exists('pmpropbc_checkout_boxes')) {
+				// Integrate with the PMPro Pay by Check Add On.
+				if ( function_exists( 'pmpropbc_checkout_boxes' ) ) {
 					global $gateway, $pmpro_level, $pmpro_review;
-					$gateway_setting = get_option("pmpro_gateway");
-					$options = pmpropbc_getOptions($pmpro_level->id);
+					$gateway_setting = get_option( 'pmpro_gateway' );
+					$options = pmpropbc_getOptions( $pmpro_level->id );
 
-					//only show if the main gateway is not check and setting value == 1 (value == 2 means only do check payments)
-					if($gateway_setting != "check" && $options['setting'] == 1) {
+					// Only show if the main gateway is not check and setting value == 1 (value == 2 means only do check payments).
+					if ( $gateway_setting != "check" && $options['setting'] == 1 ) {
 					?>
 					<span class="gateway_check">
 						<input type="radio" name="gateway" value="check" <?php if($gateway == "check") { ?>checked="checked"<?php } ?> />
@@ -335,6 +339,12 @@ add_action('admin_notices', 'pmproappe_admin_notices');
 	The JS in this Add On will then hide/show the fields based on which gateway option is chosen.
 */
 function pmproappe_include_billing_and_payment_fields() {
+	//if already using paypal, ignore this
+	$setting_gateway = get_option("pmpro_gateway");
+	if(pmproappe_using_paypal( $setting_gateway )) {
+		return;
+	}
+
 	global $gateway;
 		
 	if ( $gateway == 'paypalexpress' ) {
