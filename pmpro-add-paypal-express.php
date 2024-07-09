@@ -34,22 +34,26 @@ function pmpro_add_paypal_express_register_styles() {
 }
 add_action( 'wp_enqueue_scripts', 'pmpro_add_paypal_express_register_styles' );
 
-/*
-	Make PayPal Express a valid gateway.
-*/
-function pmproappe_pmpro_valid_gateways($gateways)
-{
-    //if already using paypal, ignore this
-	$setting_gateway = get_option("pmpro_gateway");
+/**
+ * Make PayPal Express a valid gateway.
+ *
+ * @param array $gateways Array of valid gateways.
+ */
+function pmproappe_pmpro_valid_gateways( $gateways ) {
+	// Get the current gateway setting.
+	$setting_gateway = get_option( 'pmpro_gateway' );
 
-	if(pmproappe_using_paypal( $setting_gateway )) {
+	// If PayPal is already the current gateway, ignore this.
+	if ( pmproappe_using_paypal( $setting_gateway ) ) {
 		return $gateways;
 	}
 
+	// Add PayPal Express to the list of valid gateways.
 	$gateways[] = "paypalexpress";
-    return $gateways;
+
+	return $gateways;
 }
-add_filter("pmpro_valid_gateways", "pmproappe_pmpro_valid_gateways");
+add_filter( 'pmpro_valid_gateways', 'pmproappe_pmpro_valid_gateways' );
 
 /*
 	Check if a PayPal gateway is enabled for PMPro.
