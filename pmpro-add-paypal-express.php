@@ -123,6 +123,7 @@ function pmproappe_pmpro_checkout_boxes()
 								if ( function_exists( 'pmpropbc_checkout_boxes' ) ) {
 									global $pmpro_level;
 									$options = pmpropbc_getOptions( $pmpro_level->id );
+									$check_gateway_label = get_option( 'pmpro_check_gateway_label' ) ?: __( 'Check', 'pmpro-add-paypal-express' );
 
 									// Only show if the main gateway is not check and setting value == 1 (value == 2 means only do check payments).
 									if ( $setting_gateway != "check" && $options['setting'] == 1 ) {
@@ -130,7 +131,7 @@ function pmproappe_pmpro_checkout_boxes()
 										<div class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_field pmpro_form_field-radio-item' ) ); ?> gateway_check">
 											<input type="radio" id="gateway_check" name="gateway" class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_input pmpro_form_input-radio' ) ); ?>" value="check" <?php if($gateway == "check") { ?>checked="checked"<?php } ?> />
 											<label for="gateway_check" class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_label pmpro_form_label-inline pmpro_clickable' ) ); ?>">
-												<?php esc_html_e( 'Pay by Check', 'pmpro-add-paypal-express' ); ?>
+												<?php echo esc_html( sprintf( __( 'Pay by %s', 'pmpro-pay-by-check' ), $check_gateway_label ) ); ?>
 											</label>
 										</div> <!-- end pmpro_form_field pmpro_form_field-radio-item -->
 										<?php
