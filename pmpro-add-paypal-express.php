@@ -109,14 +109,14 @@ function pmproappe_pmpro_checkout_boxes()
 			</span>
 
 			<?php
-				//integration with the PMPro Pay by Check Addon
-				if(function_exists('pmpropbc_checkout_boxes')) {
+				// Integrate with the PMPro Pay by Check Add On.
+				if ( function_exists( 'pmpropbc_checkout_boxes' ) ) {
 					global $gateway, $pmpro_level, $pmpro_review;
-					$gateway_setting = pmpro_getOption("gateway");
-					$options = pmpropbc_getOptions($pmpro_level->id);
+					$gateway_setting = get_option( 'pmpro_gateway' );
+					$options = pmpropbc_getOptions( $pmpro_level->id );
 
-					//only show if the main gateway is not check and setting value == 1 (value == 2 means only do check payments)
-					if($gateway_setting != "check" && $options['setting'] == 1) {
+					// Only show if the main gateway is not check and setting value == 1 (value == 2 means only do check payments).
+					if ( $gateway_setting != "check" && $options['setting'] == 1 ) {
 					?>
 					<span class="gateway_check">
 						<input type="radio" name="gateway" value="check" <?php if($gateway == "check") { ?>checked="checked"<?php } ?> />
