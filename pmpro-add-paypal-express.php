@@ -93,9 +93,9 @@ function pmproappe_pmpro_checkout_boxes()
 	?>
 	<div id="pmpro_payment_method" class="pmpro_checkout" <?php if(!$pmpro_requirebilling) { ?>style="display: none;"<?php } ?>>
 		<hr />
-		<h3>
-			<span class="pmpro_checkout-h3-name"><?php _e('Choose Your Payment Method', 'pmpro-add-paypal-express');?></span>
-		</h3>
+		<h2>
+			<span class="pmpro_checkout-h2-name"><?php _e('Choose Your Payment Method', 'pmpro-add-paypal-express');?></span>
+		</h2>
 		<div class="pmpro_checkout-fields">
 			<?php if($setting_gateway != 'check') { ?>
 			<span class="gateway_<?php echo esc_attr($setting_gateway); ?>">
