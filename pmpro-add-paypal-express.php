@@ -222,7 +222,7 @@ function pmproappe_pmpro_checkout_boxes()
 				jQuery('#pmpro_paypalexpress_checkout').appendTo('div.pmpro_submit');
 
 				// Remove the screen-reader-text class from the span inside the button.
-				// This version doesn't load the image in core PMPro styles so we need to show the word PayPal.
+				// Previous versions of PMPro do not load the PayPal logo SVG so we need to show the word PayPal.
 				jQuery('#pmpro_btn-submit-paypalexpress span.screen-reader-text').removeClass('screen-reader-text');
 			}
 
