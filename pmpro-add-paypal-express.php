@@ -212,8 +212,19 @@ function pmproappe_pmpro_checkout_boxes()
 		//choosing payment method
 		jQuery(document).ready(function() {
 
-			//move paypal express button into submit box
-			jQuery('#pmpro_paypalexpress_checkout').prependTo('div.pmpro_form_submit');
+			// Move PayPal Express button into submit box.
+			var pmpro_form_submit = jQuery('div.pmpro_form_submit');
+			if (pmpro_form_submit.length) {
+				// This means we are on v3.1+.
+				jQuery('#pmpro_paypalexpress_checkout').prependTo(pmpro_form_submit);
+			} else {
+				// This means we are on v3.0.x. or earlier.
+				jQuery('#pmpro_paypalexpress_checkout').appendTo('div.pmpro_submit');
+
+				// Remove the screen-reader-text class from the span inside the button.
+				// This version doesn't load the image in core PMPro styles so we need to show the word PayPal.
+				jQuery('#pmpro_btn-submit-paypalexpress span.screen-reader-text').removeClass('screen-reader-text');
+			}
 
 			//detect gateway change
 			jQuery('input[name=gateway]').click(function() {
