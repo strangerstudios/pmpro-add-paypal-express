@@ -1,2 +1,4 @@
 .gitattributes export-ignore
 .github export-ignore
+README.MD export-ignore
+pmpro-add-paypal-express-banner.png export-ignore
