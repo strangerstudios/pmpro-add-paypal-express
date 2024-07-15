@@ -45,7 +45,7 @@ Please post it in the issues section of GitHub and we'll fix it as soon as we ca
 
 == Changelog ==
 = 0.7 - TBD =
-* ENHANCEMENT: Added support for V3.1+ Paid Memberships Pro frontend changes.
+* ENHANCEMENT: Added support for v3.1+ Paid Memberships Pro frontend changes.
 * ENHANCEMENT: Now respecting the "Gateway Name Label" setting in core PMPro v3.0+ for updating "Check" wording.
 
 = .6
