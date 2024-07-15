@@ -47,6 +47,9 @@ Please post it in the issues section of GitHub and we'll fix it as soon as we ca
 = 0.7 - TBD =
 * ENHANCEMENT: Added support for v3.1+ Paid Memberships Pro frontend changes.
 * ENHANCEMENT: Now respecting the "Gateway Name Label" setting in core PMPro v3.0+ for updating "Check" wording.
+* BUG FIX/ENHANCEMENT: Fixed headings hierarchy in payment method box for accessibility.
+* BUG FIX: Fixed issue with duplicate PayPal buttons and payment information fields when the primary site gateway is PayPal Express.
+* REFACTOR: Changed uses of `pmpro_getOption()` to `get_option()`.
 
 = .6
 * ENHANCEMENT: Reading for localization.
