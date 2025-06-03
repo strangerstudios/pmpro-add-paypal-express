@@ -105,7 +105,7 @@ function pmproappe_pmpro_checkout_boxes()
 								<div class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_field pmpro_form_field-radio-item' ) ); ?> gateway_<?php echo esc_attr($setting_gateway); ?>">
 									<input type="radio" id="gateway_<?php echo esc_attr( $setting_gateway ); ?>" name="gateway" class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_input pmpro_form_input-radio' ) ); ?>" value="<?php echo esc_attr( $setting_gateway ); ?>" <?php if(!$gateway || $gateway == $setting_gateway) { ?>checked="checked"<?php } ?> />
 									<label for="gateway_<?php echo esc_attr( $setting_gateway ); ?>" class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_label pmpro_form_label-inline pmpro_clickable' ) ); ?>">
-										<?php esc_html_e( 'Check Out with a Credit Card Here', 'pmpro-add-paypal-express' ); ?>
+										<?php esc_html_e( 'Check Out with a Credit Card', 'pmpro-add-paypal-express' ); ?>
 									</label>
 								</div> <!-- end pmpro_form_field pmpro_form_field-radio-item -->
 							<?php } ?>
