@@ -65,7 +65,7 @@ function pmproappe_using_paypal( $check_gateway = null ) {
 		$check_gateway = $gateway;
 	}
 
-	$paypal_gateways = apply_filters('pmpro_paypal_gateways', array('paypal', 'paypalstandard', 'paypalexpress' ) );
+	$paypal_gateways = apply_filters('pmpro_paypal_gateways', array( 'paypalexpress' ) );
 
 	if ( in_array($check_gateway, $paypal_gateways)) {
 		return true;
@@ -346,7 +346,7 @@ function pmproappe_admin_notices() {
 	if( !empty( $_REQUEST['page'] ) && $_REQUEST['page'] == 'pmpro-paymentsettings' ) {
 		//check gateway
 		$gateway = pmpro_getGateway();
-		if( $gateway == 'paypal' || $gateway == 'paypalexpress' ) {
+		if( $gateway == 'paypalexpress' ) {
 		?>
 		<div class="notice notice-warning is-dismissible">
 			<p><?php echo __( 'The Add PayPal Express Add On is not required with the chosen gateway. Change the gateway setting below or deactivate the Add On.', 'pmpro-add-paypal-express' ) ;?></p>
