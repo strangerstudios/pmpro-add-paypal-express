@@ -1,17 +1,17 @@
-# Copyright (C) 2024 Paid Memberships Pro
+# Copyright (C) 2025 Paid Memberships Pro
 # This file is distributed under the same license as the Paid Memberships Pro - Add PayPal Express Add On plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Paid Memberships Pro - Add PayPal Express Add On 0.7\n"
+"Project-Id-Version: Paid Memberships Pro - Add PayPal Express Add On 0.7.1\n"
 "Report-Msgid-Bugs-To: info@paidmembershipspro.com\n"
 "Last-Translator: Paid Memberships Pro <info@paidmembershipspro.com>\n"
 "Language-Team: Paid Memberships Pro <info@paidmembershipspro.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-07-15T16:55:16+00:00\n"
+"POT-Creation-Date: 2025-06-25T19:01:16+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.10.0\n"
+"X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: pmpro-add-paypal-express\n"
 
 #. Plugin Name of the plugin
@@ -89,4 +89,8 @@ msgstr ""
 
 #: pmpro-add-paypal-express.php:352
 msgid "The Add PayPal Express Add On is not required with the chosen gateway. Change the gateway setting below or deactivate the Add On."
+msgstr ""
+
+#: pmpro-add-paypal-express.php:108
+msgid "Check Out with a Credit Card"
 msgstr ""
