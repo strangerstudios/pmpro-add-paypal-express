@@ -1,15 +1,15 @@
-# Copyright (C) 2025 Paid Memberships Pro
+# Copyright (C) 2026 Paid Memberships Pro
 # This file is distributed under the same license as the Paid Memberships Pro - Add PayPal Express Add On plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Paid Memberships Pro - Add PayPal Express Add On 0.7.1\n"
+"Project-Id-Version: Paid Memberships Pro - Add PayPal Express Add On 0.7.2\n"
 "Report-Msgid-Bugs-To: info@paidmembershipspro.com\n"
 "Last-Translator: Paid Memberships Pro <info@paidmembershipspro.com>\n"
 "Language-Team: Paid Memberships Pro <info@paidmembershipspro.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-06-25T19:01:16+00:00\n"
+"POT-Creation-Date: 2026-09-29T15:52:22+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: pmpro-add-paypal-express\n"
@@ -41,6 +41,7 @@ msgstr ""
 
 #: pmpro-add-paypal-express.php:93
 #: pmpro-add-paypal-express.php:98
+#: pmpro-add-paypal-express.php:102
 msgid "Choose Your Payment Method"
 msgstr ""
 
@@ -52,6 +53,7 @@ msgstr ""
 #: pmpro-add-paypal-express.php:104
 #: pmpro-add-paypal-express.php:134
 #: pmpro-add-paypal-express.php:116
+#: pmpro-add-paypal-express.php:120
 msgid "Check Out with PayPal"
 msgstr ""
 
@@ -65,32 +67,39 @@ msgstr ""
 
 #: pmpro-add-paypal-express.php:354
 #: pmpro-add-paypal-express.php:394
+#: pmpro-add-paypal-express.php:398
 msgid "View Documentation"
 msgstr ""
 
 #: pmpro-add-paypal-express.php:354
 #: pmpro-add-paypal-express.php:394
+#: pmpro-add-paypal-express.php:398
 msgid "Docs"
 msgstr ""
 
 #: pmpro-add-paypal-express.php:355
 #: pmpro-add-paypal-express.php:395
+#: pmpro-add-paypal-express.php:399
 msgid "Visit Customer Support Forum"
 msgstr ""
 
 #: pmpro-add-paypal-express.php:355
 #: pmpro-add-paypal-express.php:395
+#: pmpro-add-paypal-express.php:399
 msgid "Support"
 msgstr ""
 
 #: pmpro-add-paypal-express.php:125
+#: pmpro-add-paypal-express.php:129
 msgid "Check"
 msgstr ""
 
 #: pmpro-add-paypal-express.php:352
+#: pmpro-add-paypal-express.php:356
 msgid "The Add PayPal Express Add On is not required with the chosen gateway. Change the gateway setting below or deactivate the Add On."
 msgstr ""
 
 #: pmpro-add-paypal-express.php:108
+#: pmpro-add-paypal-express.php:112
 msgid "Check Out with a Credit Card"
 msgstr ""
