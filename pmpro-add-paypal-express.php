@@ -22,6 +22,10 @@ Domain Path: /languages
 	* PayPal Payflow Pro
 */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 function pmpro_add_paypal_express_i18n() {
 	load_plugin_textdomain( 'pmpro-add-paypal-express', false, basename( dirname( __FILE__ ) ) . '/languages' ); 
 }
@@ -343,13 +347,13 @@ add_action('pmpro_applydiscountcode_return_js', 'pmproappe_pmpro_applydiscountco
 */
 function pmproappe_admin_notices() {
 	//make sure we're on the payment settings page
-	if( !empty( $_REQUEST['page'] ) && $_REQUEST['page'] == 'pmpro-paymentsettings' ) {
+	if( !empty( $_REQUEST['page'] ) && $_REQUEST['page'] == 'pmpro-paymentsettings' ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only admin page check to decide whether to show a notice.
 		//check gateway
 		$gateway = pmpro_getGateway();
 		if( $gateway == 'paypalexpress' ) {
 		?>
 		<div class="notice notice-warning is-dismissible">
-			<p><?php echo __( 'The Add PayPal Express Add On is not required with the chosen gateway. Change the gateway setting below or deactivate the Add On.', 'pmpro-add-paypal-express' ) ;?></p>
+			<p><?php echo esc_html__( 'The Add PayPal Express Add On is not required with the chosen gateway. Change the gateway setting below or deactivate the Add On.', 'pmpro-add-paypal-express' ) ;?></p>
 		</div>
 		<?php
 		}
